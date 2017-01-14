@@ -4,7 +4,6 @@ import pytest
 import shutil
 import os
 
-
 @pytest.fixture
 def datadir(tmpdir, request):
     '''
@@ -25,5 +24,7 @@ def datadir(tmpdir, request):
 def test_foo(datadir):
     expected_config_1 = datadir.join('expected_config_1.ini')
     expected_config_2 = datadir.join('expected_config_2.ini')
-    assert expected_config_1.read() == "expected1\n"
-    assert expected_config_2.read() == "expected2\n"
+    content_1 = expected_config_1.read()
+    content_2 = expected_config_2.read()
+    assert content_1 == "expected1\nexpected1\nexpected1\nexpected1\nexpected1\nexpected1\nexpected1\nexpected1"
+    assert content_2 == "expected2\nexpected4\nexpected2\nexpected3\nexpected2\nexpected2\nexpected2\nexpected2"
